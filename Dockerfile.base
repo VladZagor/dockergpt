@@ -1,0 +1,17 @@
+FROM python
+
+COPY /src/requirements.txt /app/requirements.txt
+RUN pip3 install -r /app/requirements.txt
+
+COPY /models/* /models/
+
+COPY /source_documents/* /source_documents/
+
+ENV DB_FOLDER="/db"
+ENV MODEL_PATH="/models/ggml-gpt4all-j-v1.3-groovy.bin"
+ENV SOURCE_DIRECTORY="/source_documents"
+
+RUN [ "python", "-c", "import nltk; nltk.download('all')" ]
+
+RUN apt-get update &&\
+    apt-get -y install pandoc

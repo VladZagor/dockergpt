@@ -1,0 +1,1 @@
+docker run --rm -it -p 127.0.0.1:8000:8000/tcp --gpus=all python-test python server.py

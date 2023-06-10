@@ -1,0 +1,12 @@
+FROM privategpt-base
+
+WORKDIR /app
+
+COPY /src/* .
+
+ENV MODEL_TYPE="GPT4All"
+ENV EMBEDDINGS_MODEL_NAME="all-MiniLM-L6-v2"
+ENV MODEL_N_CTX=5000
+ENV TARGET_SOURCE_CHUNKS=4
+
+# RUN python ingest.py
