@@ -1,1 +1,1 @@
-docker build -f Dockerfile.base -t privategpt-base .
+docker build -f Dockerfile.base -t dockergpt-base .

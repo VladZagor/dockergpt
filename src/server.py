@@ -14,7 +14,7 @@ async def root():
 @app.post("/update_db")
 async def update_db():
     pgpt = PrivateGPT()
-    pgpt.update_documents()
+    await pgpt.update_documents()
 
 
 @app.post("/ask")
@@ -29,4 +29,8 @@ async def ask(question: str):
     return json.dumps(resp)
 
 if __name__ == "__main__":
+    # Initially update documents
+    pgpt = PrivateGPT()
+    pgpt.update_documents()
+    # Start the server
     uvicorn.run(app, host="0.0.0.0", port=8000)

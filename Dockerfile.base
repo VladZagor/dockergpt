@@ -3,15 +3,19 @@ FROM python
 COPY /src/requirements.txt /app/requirements.txt
 RUN pip3 install -r /app/requirements.txt
 
-COPY /models/* /models/
+# Copy local model
+# COPY /models/* /models/
 
-COPY /source_documents/* /source_documents/
+# Or download model
+RUN mkdir /models
+RUN wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin -P /models
 
 ENV DB_FOLDER="/db"
 ENV MODEL_PATH="/models/ggml-gpt4all-j-v1.3-groovy.bin"
-ENV SOURCE_DIRECTORY="/source_documents"
+ENV MODEL_TYPE="GPT4All"
+ENV EMBEDDINGS_MODEL_NAME="all-MiniLM-L6-v2"
 
 RUN [ "python", "-c", "import nltk; nltk.download('all')" ]
 
 RUN apt-get update &&\
-    apt-get -y install pandoc
+   apt-get -y install pandoc

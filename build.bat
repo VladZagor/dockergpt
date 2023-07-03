@@ -1,1 +1,1 @@
-docker build -t python-test . 
+docker build -t dockergpt .
